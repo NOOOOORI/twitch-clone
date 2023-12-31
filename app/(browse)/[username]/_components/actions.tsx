@@ -44,9 +44,13 @@ export const Actions = ({ isFollowing, userId }: ActionsProps) => {
   const handleBlock = () => {
     startTransition(() => {
       onBlock(userId)
-        .then((data) =>
-          toast.success(`${data.blocked.username}ブロックを解除しました`)
-        )
+        .then((data) => {
+          if (data) {
+            toast.success(`${data.blocked.username}ブロックを解除しました`);
+          } else {
+            toast.error("Data is undefined");
+          }
+        })
         .catch(() => toast.error("エラーが発生しました"));
     });
   };
