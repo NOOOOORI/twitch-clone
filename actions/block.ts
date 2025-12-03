@@ -19,16 +19,23 @@ export const onBlock = async (id: string) => {
 
   try {
     blockedUser = await blockUser(id);
-  } catch {
-    // This means user is a guest
+  } catch (error) {
+    // blockUser failed, but we still try to remove participant from room
+    // This could happen if user is already blocked or other validation errors
   }
 
   try {
     await RoomService.removeParticipant(self.id, id);
   } catch (error) {
-    // This means user is not in the room
+    // User is not in the room or room doesn't exist
+    // This is not a critical error, so we continue
   }
+
   revalidatePath(`/u/${self.username}/community`);
+
+  if (!blockedUser) {
+    throw new Error("ブロックに失敗しました");
+  }
 
   return blockedUser;
 };

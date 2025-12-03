@@ -17,27 +17,34 @@ export async function POST(req: Request) {
     return new Response("No authorization header", { status: 400 });
   }
 
-  const event = receiver.receive(body, authorization);
+  try {
+    const event = receiver.receive(body, authorization);
 
-  if (event.event === "ingress_started") {
-    await db.stream.update({
-      where: {
-        ingressId: event.ingressInfo?.ingressId,
-      },
-      data: {
-        isLive: true,
-      },
-    });
-  }
+    if (event.event === "ingress_started") {
+      await db.stream.update({
+        where: {
+          ingressId: event.ingressInfo?.ingressId,
+        },
+        data: {
+          isLive: true,
+        },
+      });
+    }
 
-  if (event.event === "ingress_ended") {
-    await db.stream.update({
-      where: {
-        ingressId: event.ingressInfo?.ingressId,
-      },
-      data: {
-        isLive: false,
-      },
-    });
+    if (event.event === "ingress_ended") {
+      await db.stream.update({
+        where: {
+          ingressId: event.ingressInfo?.ingressId,
+        },
+        data: {
+          isLive: false,
+        },
+      });
+    }
+
+    return new Response("OK", { status: 200 });
+  } catch (error) {
+    console.error("Error processing webhook:", error);
+    return new Response("Internal Server Error", { status: 500 });
   }
 }
