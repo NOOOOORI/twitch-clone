@@ -2,7 +2,7 @@
 
 import { currentUser } from "@clerk/nextjs";
 
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { getUserById } from "@/lib/user-service";
 
 export const createDonationCheckout = async (
@@ -26,7 +26,7 @@ export const createDonationCheckout = async (
     throw new Error("Unauthorized");
   }
 
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     mode: "payment",
     payment_method_types: ["card"],
     line_items: [
