@@ -24,6 +24,7 @@ export const VariantToggle = () => {
       <Button
         onClick={onToggle}
         variant="ghost"
+        aria-label={label}
         className="h-auto p-2 hover:bg-white/10 hover:text-primary bg-transparent"
       >
         <Icon className="h-4 w-4" />

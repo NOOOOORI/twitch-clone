@@ -49,6 +49,7 @@ export const CommunityItem = ({
         <Hint label="ブロック">
           <Button
             variant="ghost"
+            aria-label="ブロック"
             className="h-auto w-auto p-1 opacity-0 group-hover:opacity-100 transition"
             onClick={handleBlock}
             disabled={isPending}
