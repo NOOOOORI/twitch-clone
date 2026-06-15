@@ -19,7 +19,7 @@ export const Logo = () => {
         <div className={cn("hidden lg:block", font.className)}>
           <p className="text-lg font-semibold">Bwitch</p>
           <p className="text-xs text-muted-foreground">
-            みんなでプレイしよう！
+            好きなことで、つながろう
           </p>
         </div>
       </div>
