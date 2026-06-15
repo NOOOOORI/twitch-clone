@@ -16,22 +16,22 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: {
-    default: "Twitch - みんなでプレイしよう！",
-    template: "%s | Twitch",
+    default: "Bwitch - みんなでプレイしよう！",
+    template: "%s | Bwitch",
   },
   description:
     "誰でも配信・視聴ができるライブストリーミングサイトです。OBS Studioと連携してすぐに配信を開始できます。",
   openGraph: {
-    title: "Twitch - みんなでプレイしよう！",
+    title: "Bwitch - みんなでプレイしよう！",
     description:
       "誰でも配信・視聴ができるライブストリーミングサイトです。OBS Studioと連携してすぐに配信を開始できます。",
-    siteName: "Twitch",
+    siteName: "Bwitch",
     locale: "ja_JP",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Twitch - みんなでプレイしよう！",
+    title: "Bwitch - みんなでプレイしよう！",
     description:
       "誰でも配信・視聴ができるライブストリーミングサイトです。OBS Studioと連携してすぐに配信を開始できます。",
   },
@@ -49,7 +49,7 @@ export default function RootLayout({
           <ThemeProvider
             attribute="class"
             forcedTheme="dark"
-            storageKey="twitch clone"
+            storageKey="bwitch"
           >
             <Toaster theme="light" position="bottom-center" />
             <LastLoginRecorder />
