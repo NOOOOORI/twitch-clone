@@ -171,12 +171,22 @@ export const InfoModal = ({
           </div>
           <div className="space-y-2">
             <Label>次回配信予定日時</Label>
-            <Input
-              type="datetime-local"
-              value={scheduledAt}
-              disabled={isPending}
-              onChange={(e) => setScheduledAt(e.target.value)}
-            />
+            <div className="flex items-center gap-x-2">
+              <Input
+                type="datetime-local"
+                value={scheduledAt}
+                disabled={isPending}
+                onChange={(e) => setScheduledAt(e.target.value)}
+              />
+              <Button
+                type="button"
+                variant="outline"
+                disabled={isPending || !scheduledAt}
+                onClick={() => setScheduledAt("")}
+              >
+                未定にする
+              </Button>
+            </div>
           </div>
           <div className="space-y-2">
             <Label>次回配信の予定内容</Label>
