@@ -100,6 +100,10 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
     .forEach((track) => {
       if (videoRef.current) {
         track.publication.track?.attach(videoRef.current);
+        // attach() resets `muted` based on the presence of an audio track,
+        // so re-apply the current volume state afterwards
+        videoRef.current.muted = volume === 0;
+        videoRef.current.volume = volume * 0.01;
       }
     });
 
