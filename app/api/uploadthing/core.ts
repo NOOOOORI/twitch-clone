@@ -17,11 +17,11 @@ export const ourFileRouter = {
           userId: metadata.user.id,
         },
         data: {
-          thumbnailUrl: file.url,
+          thumbnailUrl: file.ufsUrl,
         },
       });
 
-      return { fileUrl: file.url };
+      return { fileUrl: file.ufsUrl };
     }),
 } satisfies FileRouter;
 
