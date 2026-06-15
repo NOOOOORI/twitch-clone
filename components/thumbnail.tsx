@@ -12,7 +12,8 @@ interface ThumbnailProps {
 
 const isValidThumbnailUrl = (url: string) => {
   try {
-    return new URL(url).hostname === "utfs.io";
+    const { hostname } = new URL(url);
+    return hostname === "utfs.io" || hostname.endsWith(".ufs.sh");
   } catch {
     return false;
   }
