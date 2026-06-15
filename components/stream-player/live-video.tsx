@@ -42,10 +42,33 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
   };
 
   const toggleFullscreen = () => {
+    const wrapper = wrapperRef.current as
+      | (HTMLDivElement & { webkitRequestFullscreen?: () => void })
+      | null;
+    const video = videoRef.current as
+      | (HTMLVideoElement & {
+          webkitEnterFullscreen?: () => void;
+          webkitExitFullscreen?: () => void;
+          webkitDisplayingFullscreen?: boolean;
+        })
+      | null;
+
     if (isFullscreen) {
-      document.exitFullscreen();
-    } else if (wrapperRef?.current) {
-      wrapperRef.current.requestFullscreen();
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else if (video?.webkitDisplayingFullscreen) {
+        video.webkitExitFullscreen?.();
+      }
+      return;
+    }
+
+    if (wrapper?.requestFullscreen) {
+      wrapper.requestFullscreen();
+    } else if (wrapper?.webkitRequestFullscreen) {
+      wrapper.webkitRequestFullscreen();
+    } else if (video?.webkitEnterFullscreen) {
+      // iOS Safari only supports fullscreen on the <video> element itself
+      video.webkitEnterFullscreen();
     }
   };
 
@@ -55,6 +78,22 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
   };
 
   useEventListener("fullscreenchange", handleFullscreenChange, wrapperRef);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const onBeginFullscreen = () => setIsFullscreen(true);
+    const onEndFullscreen = () => setIsFullscreen(false);
+
+    video.addEventListener("webkitbeginfullscreen", onBeginFullscreen);
+    video.addEventListener("webkitendfullscreen", onEndFullscreen);
+
+    return () => {
+      video.removeEventListener("webkitbeginfullscreen", onBeginFullscreen);
+      video.removeEventListener("webkitendfullscreen", onEndFullscreen);
+    };
+  }, []);
 
   useTracks([Track.Source.Camera, Track.Source.Microphone])
     .filter((track) => track.participant.identity === participant.identity)
