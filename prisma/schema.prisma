@@ -24,6 +24,8 @@ model User {
 
   stream Stream?
 
+  donationsReceived Donation[]
+
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
@@ -80,4 +82,20 @@ model Block {
   @@unique([blockerId, blockedId])
   @@index([blockerId])
   @@index([blockedId])
+}
+
+model Donation {
+  id String @id @default(uuid())
+  amount Int
+  message String? @db.Text
+  supporterName String? @db.Text
+
+  stripeSessionId String @unique
+
+  streamerId String
+  streamer User @relation(fields: [streamerId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([streamerId])
 }

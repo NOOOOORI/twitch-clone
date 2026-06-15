@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 import { useViewerToken } from "@/hooks/use-viewer-token";
 import { Stream, User } from "@prisma/client";
 import { LiveKitRoom } from "@livekit/components-react";
@@ -44,6 +47,20 @@ export const StreamPlayer = ({
 }: StreamPlayerProps) => {
   const { token, name, identity } = useViewerToken(user.id);
   const { collapsed } = useChatSidebar((state) => state);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const donation = searchParams.get("donation");
+
+    if (donation === "success") {
+      toast.success("投げ銭ありがとうございました！");
+      router.replace(`/${user.username}`);
+    } else if (donation === "cancel") {
+      toast.error("投げ銭がキャンセルされました");
+      router.replace(`/${user.username}`);
+    }
+  }, [searchParams, router, user.username]);
 
   if (!token || !name || !identity) {
     return <StreamPlayerSkeleton />;

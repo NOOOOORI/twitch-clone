@@ -2,7 +2,7 @@
 
 import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
-import { Fullscreen, KeyRound, MessageSquare, Users } from "lucide-react";
+import { Fullscreen, Gift, KeyRound, MessageSquare, Users } from "lucide-react";
 import { NavItem, NavItemSkeleton } from "./nav-item";
 
 export const Navigation = () => {
@@ -30,12 +30,17 @@ export const Navigation = () => {
       href: `/u/${user?.username}/community`,
       icon: Users,
     },
+    {
+      label: "投げ銭",
+      href: `/u/${user?.username}/donations`,
+      icon: Gift,
+    },
   ];
 
   if (!user?.username) {
     return (
       <u className="space-y-2">
-        {[...Array(4)].map((_, i) => (
+        {[...Array(5)].map((_, i) => (
           <NavItemSkeleton key={i} />
         ))}
       </u>

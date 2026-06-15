@@ -9,6 +9,7 @@ import { onFollow, onUnfollow } from "@/actions/follow";
 import { useTransition } from "react";
 import { toast } from "sonner";
 import { Skeleton } from "../ui/skeleton";
+import { DonateModal } from "./donate-modal";
 
 interface ActionsProps {
   hostIdentity: string;
@@ -59,18 +60,21 @@ export const Actions = ({
   };
 
   return (
-    <Button
-      disabled={isPending || isHost}
-      onClick={toggleFollow}
-      variant="primary"
-      size="sm"
-      className="w-full lg:w-auto"
-    >
-      <Heart
-        className={cn("h-4 w-4 mr-2", isFollowing ? "fill-white" : "fill-none")}
-      />
-      {isFollowing ? "フォロー解除" : "フォロー"}
-    </Button>
+    <div className="flex items-center gap-x-2">
+      <Button
+        disabled={isPending || isHost}
+        onClick={toggleFollow}
+        variant="primary"
+        size="sm"
+        className="w-full lg:w-auto"
+      >
+        <Heart
+          className={cn("h-4 w-4 mr-2", isFollowing ? "fill-white" : "fill-none")}
+        />
+        {isFollowing ? "フォロー解除" : "フォロー"}
+      </Button>
+      {!isHost && <DonateModal hostIdentity={hostIdentity} />}
+    </div>
   );
 };
 
