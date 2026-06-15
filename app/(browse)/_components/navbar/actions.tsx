@@ -15,7 +15,7 @@ export const Actions = async () => {
         className="text-muted-foreground hover:text-primary"
         asChild
       >
-        <Link href="/help">
+        <Link href="/help" aria-label="使い方">
           <HelpCircle className="h-5 w-5 lg:mr-2" />
           <span className="hidden lg:block">使い方</span>
         </Link>
@@ -35,7 +35,7 @@ export const Actions = async () => {
             className="text-muted-foreground hover:text-primary"
             asChild
           >
-            <Link href={`/u/${user.username}`}>
+            <Link href={`/u/${user.username}`} aria-label="ダッシュボード">
               <Clapperboard className="h-5 w-5 lg:mr-2" />
               <span className="hidden lg:block">ダッシュボード</span>
             </Link>

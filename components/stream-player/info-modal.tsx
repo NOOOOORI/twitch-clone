@@ -131,6 +131,7 @@ export const InfoModal = ({
                       type="button"
                       disabled={isPending}
                       onClick={onRemove}
+                      aria-label="削除する"
                       className="h-auto w-auto p-1.5"
                     >
                       <Trash className="h-4 w-4" />

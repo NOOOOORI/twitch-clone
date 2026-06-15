@@ -38,6 +38,7 @@ export const VolumeControl = ({
       <Hint label={label} asChild>
         <button
           onClick={onToggle}
+          aria-label={label}
           className="text-white hover:bg-white/10 p-1.5 rounded-lg"
         >
           <Icon className="h-6 w-6" />
