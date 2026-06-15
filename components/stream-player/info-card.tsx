@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { format } from "date-fns";
 import { Pencil } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { InfoModal } from "./info-modal";
@@ -8,6 +9,9 @@ import { InfoModal } from "./info-modal";
 interface InfoCardProps {
   name: string;
   thumbnailUrl: string | null;
+  description: string | null;
+  scheduledAt: Date | null;
+  scheduledDescription: string | null;
   hostIdentity: string;
   viewerIdentity: string;
 }
@@ -15,6 +19,9 @@ interface InfoCardProps {
 export const InfoCard = ({
   name,
   thumbnailUrl,
+  description,
+  scheduledAt,
+  scheduledDescription,
   hostIdentity,
   viewerIdentity,
 }: InfoCardProps) => {
@@ -38,7 +45,13 @@ export const InfoCard = ({
               視聴者へのアピールを充実させましょう
             </p>
           </div>
-          <InfoModal initialName={name} initialThumbnailUrl={thumbnailUrl} />
+          <InfoModal
+            initialName={name}
+            initialThumbnailUrl={thumbnailUrl}
+            initialDescription={description}
+            initialScheduledAt={scheduledAt}
+            initialScheduledDescription={scheduledDescription}
+          />
         </div>
         <Separator />
         <div className="p-4 lg:p-6 space-y-4">
@@ -47,6 +60,31 @@ export const InfoCard = ({
             <p className="text-sm font-semibold">{name}</p>
           </div>
         </div>
+        {description && (
+          <div className="p-4 lg:p-6 space-y-4">
+            <div>
+              <h3 className="text-sm text-muted-foreground mb-2">配信概要</h3>
+              <p className="text-sm whitespace-pre-wrap">{description}</p>
+            </div>
+          </div>
+        )}
+        {scheduledAt && (
+          <div className="p-4 lg:p-6 space-y-4">
+            <div>
+              <h3 className="text-sm text-muted-foreground mb-2">
+                次回配信予定
+              </h3>
+              <p className="text-sm font-semibold">
+                {format(scheduledAt, "yyyy/MM/dd HH:mm")}
+              </p>
+              {scheduledDescription && (
+                <p className="text-sm whitespace-pre-wrap mt-1">
+                  {scheduledDescription}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
         <div className="p-4 lg:p-6 space-y-4">
           <div>
             <h3 className="text-sm text-muted-foreground mb-2">サムネイル</h3>

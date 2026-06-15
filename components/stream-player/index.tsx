@@ -14,6 +14,7 @@ import { ChatToggle } from "./chat-toggle";
 import { Header, HeaderSkeleton } from "./header";
 import { InfoCard } from "./info-card";
 import { AboutCard } from "./about-card";
+import { ScheduleCard } from "./schedule-card";
 
 type CustomStream = {
   id: string;
@@ -23,6 +24,9 @@ type CustomStream = {
   isLive: boolean;
   thumbnailUrl: string | null;
   name: string;
+  description: string | null;
+  scheduledAt: Date | null;
+  scheduledDescription: string | null;
 };
 
 type CustomUser = {
@@ -96,6 +100,14 @@ export const StreamPlayer = ({
             viewerIdentity={identity}
             name={stream.name}
             thumbnailUrl={stream.thumbnailUrl}
+            description={stream.description}
+            scheduledAt={stream.scheduledAt}
+            scheduledDescription={stream.scheduledDescription}
+          />
+          <ScheduleCard
+            description={stream.description}
+            scheduledAt={stream.scheduledAt}
+            scheduledDescription={stream.scheduledDescription}
           />
           <AboutCard
             hostName={user.username}

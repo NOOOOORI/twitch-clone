@@ -35,6 +35,50 @@ export const getFollowedUsers = async () => {
   }
 };
 
+export const getFollowedStreamSchedules = async () => {
+  try {
+    const self = await getSelf();
+
+    const followedUsers = await db.follow.findMany({
+      where: {
+        followerId: self.id,
+        following: {
+          blocking: {
+            none: {
+              blockedId: self.id,
+            },
+          },
+        },
+      },
+      include: {
+        following: {
+          include: {
+            stream: true,
+          },
+        },
+      },
+    });
+
+    const now = new Date();
+
+    return followedUsers
+      .map((follow) => follow.following)
+      .filter(
+        (user) =>
+          user.stream?.scheduledAt &&
+          user.stream.scheduledAt.getTime() > now.getTime()
+      )
+      .sort((a, b) => {
+        return (
+          (a.stream!.scheduledAt as Date).getTime() -
+          (b.stream!.scheduledAt as Date).getTime()
+        );
+      });
+  } catch {
+    return [];
+  }
+};
+
 export const isFollowingUser = async (id: string) => {
   try {
     const self = await getSelf();
