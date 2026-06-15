@@ -7,6 +7,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { LastLoginRecorder } from "@/components/auth/last-login-recorder";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
             storageKey="twitch clone"
           >
             <Toaster theme="light" position="bottom-center" />
+            <LastLoginRecorder />
             {children}
           </ThemeProvider>
         </body>
