@@ -27,7 +27,7 @@ export const ToggleCard = ({
     startTransition(() => {
       updateStream({ [field]: !value })
         .then(() => toast.success("チャット設定を更新しました"))
-        .catch(() => toast.error("Something went wrong"));
+        .catch(() => toast.error("エラーが発生しました"));
     });
   };
 
@@ -41,7 +41,7 @@ export const ToggleCard = ({
             onCheckedChange={onChange}
             checked={value}
           >
-            {value ? "On" : "Off"}
+            {value ? "オン" : "オフ"}
           </Switch>
         </div>
       </div>

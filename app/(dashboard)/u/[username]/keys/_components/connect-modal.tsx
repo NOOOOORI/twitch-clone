@@ -39,10 +39,10 @@ export const ConnectModal = () => {
     startTransition(() => {
       createIngress(parseInt(ingressType))
         .then(() => {
-          toast.success("Ingress created");
+          toast.success("接続を作成しました");
           closeRef?.current?.click();
         })
-        .catch(() => toast.error("Something went wrong"));
+        .catch(() => toast.error("エラーが発生しました"));
     });
   };
 

@@ -46,7 +46,7 @@ export const CommunityItem = ({
     >
       <p style={{ color: color }}>{participantName}</p>
       {isHost && !isSelf && (
-        <Hint label="Block">
+        <Hint label="ブロック">
           <Button
             variant="ghost"
             className="h-auto w-auto p-1 opacity-0 group-hover:opacity-100 transition"
