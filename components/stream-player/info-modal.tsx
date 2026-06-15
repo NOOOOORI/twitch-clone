@@ -142,6 +142,9 @@ export const InfoModal = ({
                   router.refresh();
                   closeRef?.current?.click();
                 }}
+                onUploadError={(error) => {
+                  toast.error(`アップロードに失敗しました: ${error.message}`);
+                }}
               />
             </div>
           )}
