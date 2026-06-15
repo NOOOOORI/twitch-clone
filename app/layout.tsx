@@ -16,13 +16,13 @@ const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: {
-    default: "Bwitch - みんなでプレイしよう！",
+    default: "Bwitch - 好きなことで、つながろう",
     template: "%s | Bwitch",
   },
   description:
     "誰でも配信・視聴ができるライブストリーミングサイトです。OBS Studioと連携してすぐに配信を開始できます。",
   openGraph: {
-    title: "Bwitch - みんなでプレイしよう！",
+    title: "Bwitch - 好きなことで、つながろう",
     description:
       "誰でも配信・視聴ができるライブストリーミングサイトです。OBS Studioと連携してすぐに配信を開始できます。",
     siteName: "Bwitch",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Bwitch - みんなでプレイしよう！",
+    title: "Bwitch - 好きなことで、つながろう",
     description:
       "誰でも配信・視聴ができるライブストリーミングサイトです。OBS Studioと連携してすぐに配信を開始できます。",
   },
