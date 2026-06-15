@@ -75,6 +75,10 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
   const handleFullscreenChange = () => {
     const isCurrentlyFullscreen = document.fullscreenElement !== null;
     setIsFullscreen(isCurrentlyFullscreen);
+
+    if (!isCurrentlyFullscreen && videoRef.current?.paused) {
+      videoRef.current.play().catch(() => {});
+    }
   };
 
   useEventListener("fullscreenchange", handleFullscreenChange, wrapperRef);
@@ -84,7 +88,13 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
     if (!video) return;
 
     const onBeginFullscreen = () => setIsFullscreen(true);
-    const onEndFullscreen = () => setIsFullscreen(false);
+    const onEndFullscreen = () => {
+      setIsFullscreen(false);
+
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+    };
 
     video.addEventListener("webkitbeginfullscreen", onBeginFullscreen);
     video.addEventListener("webkitendfullscreen", onEndFullscreen);
