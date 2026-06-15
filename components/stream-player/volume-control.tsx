@@ -27,7 +27,7 @@ export const VolumeControl = ({
     Icon = Volume2;
   }
 
-  const label = isMuted ? "Unmute" : "Mute";
+  const label = isMuted ? "ミュート解除" : "ミュート";
 
   const handleChange = (value: number[]) => {
     onChange(value[0]);

@@ -20,7 +20,7 @@ export const Actions = ({ isFollowing, userId }: ActionsProps) => {
         .then((data) =>
           toast.success(`${data.following.username}をフォローしました`)
         )
-        .catch(() => toast.error("Something went wrong"));
+        .catch(() => toast.error("エラーが発生しました"));
     });
   };
   const handleUnFollow = () => {
@@ -29,7 +29,7 @@ export const Actions = ({ isFollowing, userId }: ActionsProps) => {
         .then((data) =>
           toast.success(`${data.following.username}のフォローをやめました`)
         )
-        .catch(() => toast.error("Something went wrong"));
+        .catch(() => toast.error("エラーが発生しました"));
     });
   };
 
@@ -48,7 +48,7 @@ export const Actions = ({ isFollowing, userId }: ActionsProps) => {
           if (data) {
             toast.success(`${data.blocked.username}ブロックを解除しました`);
           } else {
-            toast.error("Data is undefined");
+            toast.error("エラーが発生しました");
           }
         })
         .catch(() => toast.error("エラーが発生しました"));

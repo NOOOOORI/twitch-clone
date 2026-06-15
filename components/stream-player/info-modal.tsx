@@ -52,10 +52,10 @@ export const InfoModal = ({
     startTransition(() => {
       updateStream({ name: name })
         .then(() => {
-          toast.success("Stream updated");
+          toast.success("ストリーム情報を更新しました");
           closeRef?.current?.click();
         })
-        .catch(() => toast.error("Something went wrong"));
+        .catch(() => toast.error("エラーが発生しました"));
     });
   };
 

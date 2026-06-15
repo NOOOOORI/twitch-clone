@@ -7,10 +7,10 @@ export const Results = async () => {
   return (
     <div>
       <h2 className="text-lg font-semibold mb-4">
-        Stream we think you&apos;ll like
+        おすすめの配信
       </h2>
       {data.length === 0 && (
-        <div className="text-sm text-muted-foreground">No streams found</div>
+        <div className="text-sm text-muted-foreground">配信が見つかりません</div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
         {data.map((result) => (

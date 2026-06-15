@@ -21,14 +21,14 @@ export const AboutCard = ({
   const hostAsViewer = `host-${hostIdentity}`;
   const isHost = viewerIdentity === hostAsViewer;
 
-  const followedByLabel = followedByCount === 1 ? "follower" : "followers";
+  const followedByLabel = "フォロワー";
 
   return (
     <div className="px-4">
       <div className="group rounded-xl bg-background p-6 lg:p-10 flex flex-col gap-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-x-2 font-semibold text-lg lg:text-2xl">
-            About {hostName}
+            {hostName}について
             <VerifiedMark />
           </div>
           {isHost && <BioModal initialValue={bio} />}
@@ -40,7 +40,7 @@ export const AboutCard = ({
           {followedByLabel}
         </div>
         <p className="text-sm">
-          {bio || "This user prefers to keep an air of myself about them."}
+          {bio || "このユーザーはまだ自己紹介を入力していません。"}
         </p>
       </div>
     </div>

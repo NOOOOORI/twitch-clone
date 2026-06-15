@@ -5,7 +5,7 @@ const NotFoundPage = () => {
   return (
     <div className="h-full flex flex-col space-y-4 items-center justify-center text-muted-foreground">
       <h1 className="text-4xl">404</h1>
-      <p>We could&apos; find the user you were looking for.</p>
+      <p>お探しのユーザーが見つかりませんでした。</p>
       <Button variant="secondary" asChild>
         <Link href="/">ホームに戻る</Link>
       </Button>
