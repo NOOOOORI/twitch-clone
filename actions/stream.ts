@@ -25,6 +25,7 @@ export const updateStream = async (values: Partial<Stream>) => {
       description: values.description,
       scheduledAt: values.scheduledAt,
       scheduledDescription: values.scheduledDescription,
+      blockedWords: values.blockedWords,
       isChatEnabled: values.isChatEnabled,
       isChatFollowersOnly: values.isChatFollowersOnly,
       isChatDelayed: values.isChatDelayed,

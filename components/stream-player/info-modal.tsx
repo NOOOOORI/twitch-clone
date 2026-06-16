@@ -28,6 +28,7 @@ interface InfoModalProps {
   initialDescription: string | null;
   initialScheduledAt: Date | null;
   initialScheduledDescription: string | null;
+  initialBlockedWords: string | null;
 }
 
 const toDatetimeLocalValue = (date: Date | null) => {
@@ -42,6 +43,7 @@ export const InfoModal = ({
   initialDescription,
   initialScheduledAt,
   initialScheduledDescription,
+  initialBlockedWords,
 }: InfoModalProps) => {
   const router = useRouter();
   const closeRef = useRef<ElementRef<"button">>(null);
@@ -55,6 +57,7 @@ export const InfoModal = ({
   const [scheduledDescription, setScheduledDescription] = useState(
     initialScheduledDescription ?? ""
   );
+  const [blockedWords, setBlockedWords] = useState(initialBlockedWords ?? "");
 
   const onRemove = () => {
     startTransition(() => {
@@ -77,6 +80,7 @@ export const InfoModal = ({
         description: description || null,
         scheduledAt: scheduledAt ? new Date(scheduledAt) : null,
         scheduledDescription: scheduledDescription || null,
+        blockedWords: blockedWords || null,
       })
         .then(() => {
           toast.success("ストリーム情報を更新しました");
@@ -197,6 +201,19 @@ export const InfoModal = ({
               disabled={isPending}
               onChange={(e) => setScheduledDescription(e.target.value)}
             />
+          </div>
+          <div className="space-y-2">
+            <Label>NGワード(チャット禁止ワード)</Label>
+            <Textarea
+              placeholder="改行・カンマ区切りで入力(例: 死ね, ばか)"
+              value={blockedWords}
+              maxLength={1000}
+              disabled={isPending}
+              onChange={(e) => setBlockedWords(e.target.value)}
+            />
+            <p className="text-xs text-muted-foreground">
+              入力したワードはチャットで「***」と伏字表示されます。
+            </p>
           </div>
           <div className="flex justify-between">
             <DialogClose ref={closeRef} asChild>
