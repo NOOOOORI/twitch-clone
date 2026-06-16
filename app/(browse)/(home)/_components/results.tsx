@@ -12,7 +12,7 @@ export const Results = async () => {
       {data.length === 0 && (
         <div className="text-sm text-muted-foreground">配信が見つかりません</div>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
         {data.map((result) => (
           <ResultCard key={result.id} data={result} />
         ))}
@@ -25,8 +25,8 @@ export const ResultsSkeleton = () => {
   return (
     <div>
       <Skeleton className="h-8 w-[290px] mb-4" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-        {[...Array(4)].map((_, i) => (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
+        {[...Array(6)].map((_, i) => (
           <ResultCardSkeleton key={i} />
         ))}
       </div>

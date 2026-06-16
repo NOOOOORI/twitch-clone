@@ -18,7 +18,7 @@ export const ScheduleAnnouncements = async () => {
         <CalendarClock className="h-5 w-5" />
         フォロー中の配信予定
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
         {schedules.map((user) => (
           <Link
             key={user.id}
@@ -55,7 +55,7 @@ export const ScheduleAnnouncementsSkeleton = () => {
   return (
     <div className="mb-6">
       <Skeleton className="h-7 w-[180px] mb-4" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
         {[...Array(3)].map((_, i) => (
           <Skeleton key={i} className="h-[88px] rounded-xl" />
         ))}

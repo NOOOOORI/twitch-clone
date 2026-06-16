@@ -1,6 +1,7 @@
 "use client";
 
 import { useSidebar } from "@/store/use-sidebar";
+import { useMobileSidebar } from "@/store/use-mobile-sidebar";
 import { User } from "@prisma/client";
 import { UserItem, UserItemSkeleton } from "./user-item";
 
@@ -12,8 +13,9 @@ interface RecommendedProps {
 
 export const Recommended = ({ data }: RecommendedProps) => {
   const { collapsed } = useSidebar((state) => state);
+  const { open: mobileOpen } = useMobileSidebar((state) => state);
 
-  const showLabel = !collapsed && data.length > 0;
+  const showLabel = (!collapsed || mobileOpen) && data.length > 0;
 
   return (
     <div>
