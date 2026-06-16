@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getFollowedStreamSchedules } from "@/lib/follow-service";
 import { UserAvatar } from "@/components/user-avatar";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ScrollRow } from "./scroll-row";
 
 export const ScheduleAnnouncements = async () => {
   const schedules = await getFollowedStreamSchedules();
@@ -18,12 +19,12 @@ export const ScheduleAnnouncements = async () => {
         <CalendarClock className="h-5 w-5" />
         フォロー中の配信予定
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
+      <ScrollRow>
         {schedules.map((user) => (
           <Link
             key={user.id}
             href={`/${user.username}`}
-            className="rounded-xl bg-card p-4 hover:bg-accent transition"
+            className="shrink-0 w-[240px] sm:w-[260px] rounded-xl bg-card p-4 hover:bg-accent transition"
           >
             <div className="flex gap-x-3">
               <UserAvatar username={user.username} imageUrl={user.imageUrl} />
@@ -46,7 +47,7 @@ export const ScheduleAnnouncements = async () => {
             )}
           </Link>
         ))}
-      </div>
+      </ScrollRow>
     </div>
   );
 };
@@ -55,9 +56,9 @@ export const ScheduleAnnouncementsSkeleton = () => {
   return (
     <div className="mb-6">
       <Skeleton className="h-7 w-[180px] mb-4" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
-        {[...Array(3)].map((_, i) => (
-          <Skeleton key={i} className="h-[88px] rounded-xl" />
+      <div className="flex gap-2 sm:gap-3 overflow-hidden">
+        {[...Array(4)].map((_, i) => (
+          <Skeleton key={i} className="h-[88px] w-[240px] sm:w-[260px] shrink-0 rounded-xl" />
         ))}
       </div>
     </div>
