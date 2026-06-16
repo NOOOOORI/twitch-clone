@@ -6,7 +6,6 @@ html,
 body,
 :root {
   height: 100%;
-  @apply bg-neutral-900/80;
 }
 
 .hidden-scrollbar {
@@ -52,33 +51,34 @@ body,
   }
 
   .dark {
-    --background: 226.7 12.7% 13.9%;
-    --foreground: 210 40% 98%;
+    --background: 228 4% 11%;
+    --foreground: 240 11% 94%;
 
-    --card: 226.7 12.7% 13.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 7% 13%;
+    --card-foreground: 240 11% 94%;
 
-    --popover: 226.7 12.7% 13.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 7% 13%;
+    --popover-foreground: 240 11% 94%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Twitch purple */
+    --primary: 264 100% 64%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 226.7 12.7% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 240 5% 17%;
+    --secondary-foreground: 240 11% 94%;
 
-    --muted: 226.7 12.7% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 240 5% 17%;
+    --muted-foreground: 244 7% 69%;
 
-    --accent: 226.7 12.7% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 243 6% 21%;
+    --accent-foreground: 240 11% 94%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 226.7 12.7% 17.5%;
-    --input: 226.7 12.7% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 240 2% 23%;
+    --input: 240 2% 23%;
+    --ring: 264 100% 64%;
   }
 }
 

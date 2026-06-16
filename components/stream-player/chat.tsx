@@ -109,7 +109,7 @@ export const Chat = ({
   };
 
   return (
-    <div className="flex flex-col bg-background border-l border-b pt-0 h-[calc(100vh-80px)]">
+    <div className="flex flex-col bg-[#1f1f23] border-l border-border pt-0 h-[calc(100vh-50px)]">
       <ChatHeader />
       {variant === ChatVariant.CHAT && (
         <>
@@ -142,7 +142,7 @@ export const Chat = ({
 
 export const ChatSkeleton = () => {
   return (
-    <div className="flex flex-col border-l border-b pt-0 h-[calc(100vh-80px)] border-2">
+    <div className="flex flex-col bg-[#1f1f23] border-l border-border pt-0 h-[calc(100vh-50px)]">
       <ChatHeaderSkeleton />
       <ChatListSkeleton />
       <ChatFormSkeleton />

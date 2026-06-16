@@ -19,7 +19,7 @@ export const ScheduleCard = ({
 
   return (
     <div className="px-4">
-      <div className="rounded-xl bg-background p-6 lg:p-10 space-y-4">
+      <div className="rounded-xl bg-card p-6 lg:p-10 space-y-4">
         {description && (
           <div>
             <h2 className="font-semibold text-lg lg:text-2xl mb-2">配信概要</h2>

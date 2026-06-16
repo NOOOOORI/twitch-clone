@@ -23,7 +23,7 @@ export const ScheduleAnnouncements = async () => {
           <Link
             key={user.id}
             href={`/${user.username}`}
-            className="rounded-xl bg-background p-4 hover:bg-accent/50 transition"
+            className="rounded-xl bg-card p-4 hover:bg-accent transition"
           >
             <div className="flex gap-x-3">
               <UserAvatar username={user.username} imageUrl={user.imageUrl} />
