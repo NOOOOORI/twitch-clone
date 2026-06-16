@@ -8,7 +8,8 @@ import {
   useRemoteParticipant,
 } from "@livekit/components-react";
 import { useMediaQuery } from "usehooks-ts";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { toast } from "sonner";
 import { ChatHeader, ChatHeaderSkeleton } from "./chat-header";
 import { ChatForm, ChatFormSkeleton } from "./chat-form";
 import { ChatList, ChatListSkeleton } from "./chat-list";
@@ -59,6 +60,32 @@ export const Chat = ({
     [blockedWords]
   );
 
+  const mentionToken = useMemo(
+    () => (viewerName ? `@${viewerName}`.toLowerCase() : ""),
+    [viewerName]
+  );
+
+  // マウント以降に届いた自分宛てメンションだけを通知する
+  const lastMentionTimestamp = useRef(Date.now());
+
+  useEffect(() => {
+    if (!mentionToken) return;
+
+    const incoming = [...messages].sort((a, b) => a.timestamp - b.timestamp);
+
+    for (const message of incoming) {
+      if (message.timestamp <= lastMentionTimestamp.current) continue;
+      if (message.from?.name === viewerName) continue;
+
+      if (message.message.toLowerCase().includes(mentionToken)) {
+        lastMentionTimestamp.current = message.timestamp;
+        toast(`${message.from?.name ?? "誰か"}さんがあなたにメンションしました`, {
+          description: message.message,
+        });
+      }
+    }
+  }, [messages, mentionToken, viewerName]);
+
   const reversedMessages = useMemo(() => {
     const sorted = [...messages].sort((a, b) => b.timestamp - a.timestamp);
 
@@ -86,7 +113,11 @@ export const Chat = ({
       <ChatHeader />
       {variant === ChatVariant.CHAT && (
         <>
-          <ChatList messages={reversedMessages} isHidden={isHidden} />
+          <ChatList
+            messages={reversedMessages}
+            isHidden={isHidden}
+            viewerName={viewerName}
+          />
           <ChatForm
             onSubmit={onSubmit}
             value={value}
