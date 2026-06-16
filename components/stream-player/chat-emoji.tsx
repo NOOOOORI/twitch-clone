@@ -44,7 +44,7 @@ export const ChatEmoji = ({ onSelect, disabled }: ChatEmojiProps) => {
         </Button>
       </Hint>
       {isOpen && (
-        <div className="absolute bottom-full right-0 mb-2 z-50 w-56 rounded-md border bg-background p-2 shadow-md">
+        <div className="absolute bottom-full right-0 mb-2 z-50 w-56 rounded-md border bg-card p-2 shadow-md">
           <div className="grid grid-cols-8 gap-1">
             {EMOJIS.map((emoji) => (
               <button

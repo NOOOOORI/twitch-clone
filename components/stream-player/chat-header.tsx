@@ -10,7 +10,7 @@ export const ChatHeader = () => {
       <div className="absolute left-2 top-2 hidden lg:block">
         <ChatToggle />
       </div>
-      <p className="font-semibold text-primary text-center">チャット</p>
+      <p className="font-semibold text-foreground text-center">チャット</p>
       <div className="absolute top-2 right-2">
         <VariantToggle />
       </div>

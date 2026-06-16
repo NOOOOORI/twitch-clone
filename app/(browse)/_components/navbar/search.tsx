@@ -41,7 +41,7 @@ export const Search = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="検索"
-        className="rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0"
+        className="rounded-r-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 bg-secondary border-border"
       />
       {value && (
         <X

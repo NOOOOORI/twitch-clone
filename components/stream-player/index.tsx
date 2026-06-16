@@ -143,7 +143,7 @@ export const StreamPlayerSkeleton = () => {
         <VideoSkeleton />
         <HeaderSkeleton />
       </div>
-      <div className="col-span-1 bg-background">
+      <div className="col-span-1 bg-[#1f1f23]">
         <ChatSkeleton />
       </div>
     </div>
