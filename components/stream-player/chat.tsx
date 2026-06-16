@@ -13,6 +13,7 @@ import { ChatHeader, ChatHeaderSkeleton } from "./chat-header";
 import { ChatForm, ChatFormSkeleton } from "./chat-form";
 import { ChatList, ChatListSkeleton } from "./chat-list";
 import { ChatCommunity } from "./chat-community";
+import { maskBlockedWords, parseBlockedWords } from "@/lib/chat";
 
 interface ChatProps {
   hostName: string;
@@ -22,6 +23,7 @@ interface ChatProps {
   isChatEnabled: boolean;
   isChatDelayed: boolean;
   isChatFollowersOnly: boolean;
+  blockedWords: string | null;
 }
 
 export const Chat = ({
@@ -32,6 +34,7 @@ export const Chat = ({
   isChatEnabled,
   isChatDelayed,
   isChatFollowersOnly,
+  blockedWords,
 }: ChatProps) => {
   const matches = useMediaQuery("(max-width: 1024px)");
   const { variant, onExpand } = useChatSidebar((state) => state);
@@ -51,9 +54,21 @@ export const Chat = ({
     }
   }, [matches, onExpand]);
 
+  const blockedWordList = useMemo(
+    () => parseBlockedWords(blockedWords),
+    [blockedWords]
+  );
+
   const reversedMessages = useMemo(() => {
-    return messages.sort((a, b) => b.timestamp - a.timestamp);
-  }, [messages]);
+    const sorted = [...messages].sort((a, b) => b.timestamp - a.timestamp);
+
+    if (blockedWordList.length === 0) return sorted;
+
+    return sorted.map((message) => ({
+      ...message,
+      message: maskBlockedWords(message.message, blockedWordList),
+    }));
+  }, [messages, blockedWordList]);
 
   const onSubmit = () => {
     if (!send) return;

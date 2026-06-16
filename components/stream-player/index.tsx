@@ -21,6 +21,7 @@ type CustomStream = {
   isChatEnabled: boolean;
   isChatDelayed: boolean;
   isChatFollowersOnly: boolean;
+  blockedWords: string | null;
   isLive: boolean;
   thumbnailUrl: string | null;
   name: string;
@@ -103,6 +104,7 @@ export const StreamPlayer = ({
             description={stream.description}
             scheduledAt={stream.scheduledAt}
             scheduledDescription={stream.scheduledDescription}
+            blockedWords={stream.blockedWords}
           />
           <ScheduleCard
             description={stream.description}
@@ -126,6 +128,7 @@ export const StreamPlayer = ({
             isChatEnabled={stream.isChatEnabled}
             isChatDelayed={stream.isChatDelayed}
             isChatFollowersOnly={stream.isChatFollowersOnly}
+            blockedWords={stream.blockedWords}
           />
         </div>
       </LiveKitRoom>

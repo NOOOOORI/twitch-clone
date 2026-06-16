@@ -12,6 +12,7 @@ interface InfoCardProps {
   description: string | null;
   scheduledAt: Date | null;
   scheduledDescription: string | null;
+  blockedWords: string | null;
   hostIdentity: string;
   viewerIdentity: string;
 }
@@ -22,6 +23,7 @@ export const InfoCard = ({
   description,
   scheduledAt,
   scheduledDescription,
+  blockedWords,
   hostIdentity,
   viewerIdentity,
 }: InfoCardProps) => {
@@ -51,6 +53,7 @@ export const InfoCard = ({
             initialDescription={description}
             initialScheduledAt={scheduledAt}
             initialScheduledDescription={scheduledDescription}
+            initialBlockedWords={blockedWords}
           />
         </div>
         <Separator />

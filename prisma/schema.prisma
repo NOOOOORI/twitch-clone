@@ -48,6 +48,8 @@ model Stream {
   isChatDelayed Boolean @default(false)
   isChatFollowersOnly Boolean @default(false)
 
+  blockedWords String? @db.Text
+
   userId String @unique
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
