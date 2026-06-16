@@ -1,11 +1,15 @@
 import { Logo } from "./logo";
 import { Search } from "./search";
 import { Actions } from "./actions";
+import { MobileToggle } from "./mobile-toggle";
 
 export const Navbar = () => {
   return (
-    <nav className="fixed top-0 w-full h-[50px] z-[49] bg-[#1f1f23] px-2 lg:px-4 flex justify-between items-center shadow-sm border-b border-border">
-      <Logo />
+    <nav className="fixed top-0 w-full h-[50px] z-[49] bg-[#1f1f23] px-2 lg:px-4 flex justify-between items-center gap-x-2 shadow-sm border-b border-border">
+      <div className="flex items-center gap-x-1 shrink-0">
+        <MobileToggle />
+        <Logo />
+      </div>
       <Search />
       <Actions />
     </nav>
