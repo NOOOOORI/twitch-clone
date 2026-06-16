@@ -6,6 +6,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 import { ChatInfo } from "./chat-info";
+import { ChatEmoji } from "./chat-emoji";
 
 interface ChatFormProps {
   onSubmit: () => void;
@@ -71,7 +72,11 @@ export const ChatForm = ({
           )}
         />
       </div>
-      <div className="ml-auto">
+      <div className="flex items-center gap-x-2 ml-auto">
+        <ChatEmoji
+          disabled={isDisabled}
+          onSelect={(emoji) => onChange(value + emoji)}
+        />
         <Button type="submit" variant="primary" size="sm" disabled={isDisabled}>
           送信
         </Button>
