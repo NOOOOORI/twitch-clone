@@ -1,6 +1,7 @@
 "use client";
 
 import { useSidebar } from "@/store/use-sidebar";
+import { useMobileSidebar } from "@/store/use-mobile-sidebar";
 import { Follow, User } from "@prisma/client";
 import { UserItem, UserItemSkeleton } from "./user-item";
 
@@ -14,6 +15,8 @@ interface FollowingProps {
 
 export const Following = ({ data }: FollowingProps) => {
   const { collapsed } = useSidebar((state) => state);
+  const { open: mobileOpen } = useMobileSidebar((state) => state);
+  const showLabel = (!collapsed || mobileOpen) && data.length > 0;
 
   if (!data.length) {
     return null;
@@ -21,7 +24,7 @@ export const Following = ({ data }: FollowingProps) => {
 
   return (
     <div>
-      {!collapsed && (
+      {showLabel && (
         <div className="pl-6 mb-4">
           <p className="text-sm text-muted-foreground">フォロー中</p>
         </div>

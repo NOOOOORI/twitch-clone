@@ -12,7 +12,7 @@ export const Actions = async () => {
       <Button
         size="sm"
         variant="ghost"
-        className="text-muted-foreground hover:text-primary"
+        className="hidden lg:flex text-muted-foreground hover:text-primary"
         asChild
       >
         <Link href="/help" aria-label="使い方">
