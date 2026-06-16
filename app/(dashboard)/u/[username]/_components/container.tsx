@@ -5,7 +5,6 @@ import { useMediaQuery } from "usehooks-ts";
 
 import { cn } from "@/lib/utils";
 import { useCreatorSidebar } from "@/store/use-creator-sidebar";
-import { match } from "assert";
 
 interface ContainerProps {
   children: React.ReactNode;
